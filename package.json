@@ -1,16 +1,19 @@
 {
   "name": "grunt-svg-toolkit",
   "description": "> A toolkit for working with, styling and converting SVG files",
-  "version": "0.1.1",
-  "homepage": "https://github.com/iconic/grunt-svg-toolkit",
+  "version": "0.1.2",
+  "homepage": "https://github.com/matthewmorek/grunt-svg-toolkit",
   "author": {
     "name": "Iconic",
     "email": "yourfriends@useiconic.com",
     "url": "https://useiconic.com/"
   },
+  "contributors": [
+    "Matthew Morek <me@matthewmorek.com> (http://matthewmorek.com/)"
+  ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/iconic/grunt-svg-toolkit.git"
+    "url": "https://github.com/matthewmorek/grunt-svg-toolkit.git"
   },
   "keywords": [
     "SVG",
@@ -26,30 +29,30 @@
   "licenses": [
     {
       "type": "MIT",
-      "url": "https://github.com/iconic/grunt-svg-toolkit/blob/master/LICENSE"
+      "url": "https://github.com/matthewmorek/grunt-svg-toolkit/blob/master/LICENSE"
     }
   ],
   "bugs": {
-    "url": "https://github.com/iconic/grunt-svg-toolkit/issues"
+    "url": "https://github.com/matthewmorek/grunt-svg-toolkit/issues"
   },
   "scripts": {
     "test": "grunt"
   },
   "dependencies": {
-    "async": "^0.9.0",
-    "chalk": "^0.5.1",
-    "cheerio": "^0.18.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "phantom": "^0.7.2"
+    "async": "^1.5.2",
+    "chalk": "^1.1.1",
+    "cheerio": "^0.20.0",
+    "grunt-contrib-clean": "^1.0.0",
+    "phantom": "^1.0.0"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-jshint": "^0.10.0",
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~0.4.0"
+    "grunt": "~0.4.5"
   },
   "files": [
     "tasks",
