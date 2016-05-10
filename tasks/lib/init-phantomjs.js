@@ -15,15 +15,15 @@ module.exports = function (data, done) {
     // disable web security due to a bug in PhantomJS 2.0.0
     var options = {'web-security': 'no'};
 
-    phantom.create({parameters: options}, function (ph) {
+    phantom.create().then(function(ph){
       data.logger('New PhantomJS instance created.');
 
       data.phantomjs = ph;
       done(null, data);
-    }, {
-      dnodeOpts: {
-        weak: false
-      }
+      return ph;
+    }).catch(function(error) {
+      console.log(error);
+      ph.exit();
     });
   }
   else {

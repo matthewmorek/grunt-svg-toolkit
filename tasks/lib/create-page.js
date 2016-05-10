@@ -9,24 +9,24 @@
 'use strict';
 
 module.exports = function (data, done) {
-  data.phantomjs.createPage(function (newpage) {
+  data.phantomjs.createPage().then(function (newpage) {
     data.logger('New PhantomJS page created');
 
     data.page = newpage;
 
-    newpage.set('onConsoleMessage', function (msg) {
+    newpage.property('onConsoleMessage', function (msg) {
       data.logger('Phantom Console: ' + msg);
     });
 
-    newpage.set('onLoadStarted', function () {
+    newpage.property('onLoadStarted', function () {
       data.logger('Phantom page loading started');
     });
 
-    newpage.set('onLoadFinished', function (status) {
+    newpage.property('onLoadFinished', function (status) {
       data.logger('Loading finished, the page is ' + ((status === 'success') ? 'open.' : 'not open!'));
     });
 
-    // newpage.open('about:blank', function (status) {
+    // newpage.open('about:blank').then(function (status) {
     //   if (status === 'success') {
     //     data.logger('Phantom page opened');
     //     // data.logger(page.injectJs("injectme.js") ? "... done injecting itself!" : "... fail! Check the $PWD?!");
@@ -34,10 +34,13 @@ module.exports = function (data, done) {
     //   else {
     //     data.logger('Unable to open Phantom page: ' + status);
     //   }
-
     // });
 
     done(null, data);
+    return newpage;
+  }).catch(function(error) {
+    data.logger(error);
+    newpage.exit();
   });
 
 };
