@@ -11,31 +11,28 @@
 // :TODO: Use Cheerio for SVG DOM manip/parse/serialize, and to avoid
 // the Phantom XMLSerializer namespace attribute mangling issue
 
+var cheerio = require('cheerio');
+var onml = require('onml');
+var util = require('util');
+
 module.exports = function (data, done) {
   data.logger('Serializing SVG');
-
-  data.page.evaluate(function () {
-
-    var svgEl = document.querySelector('svg');
-
-    // Serialize the SVG DOM element back into a string and return it
-    //
-    // :BUG: PhantomJS drops the prefix from namespaced attributes during serialization
-    // Reference: https://github.com/ariya/phantomjs/issues/10962
-    var serializer = new XMLSerializer();
-    var result = {
-      svg: {
-        cleaned: serializer.serializeToString(svgEl)
-      }
-    };
-
-    return result;
-
-  }, function (result) {
-
-    // Update and pass along the newly transformed SVG
-    data.svg = result.svg.cleaned;
-
-    done(null, data);
+  // :NOTE: xmlMode is important to not lowercase SVG tags
+  // and attributes, like viewBox and clipPath
+  var $ = cheerio.load(data.svg, {
+    xmlMode: true
   });
+
+  var svgEl = onml.parse($('svg'));
+
+  // data.logger(onml.stringify(svgEl));
+
+  var svg = {
+    cleaned: onml.stringify(svgEl)
+  };
+
+  // Update and pass along the newly transformed SVG
+  data.svg = svg.cleaned;
+
+  done(null, data);
 };
