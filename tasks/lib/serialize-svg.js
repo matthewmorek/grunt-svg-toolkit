@@ -13,7 +13,6 @@
 
 var cheerio = require('cheerio');
 var onml = require('onml');
-var util = require('util');
 
 module.exports = function (data, done) {
   data.logger('Serializing SVG');
