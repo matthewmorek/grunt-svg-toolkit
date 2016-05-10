@@ -20,46 +20,69 @@ module.exports = function (data, done) {
     return;
   }
 
-  var $ = cheerio.load(data.svg, {
-    xmlMode: true
+  data.page.evaluate(function(){
+    var svgWidth = document.querySelector('svg').clientWidth;
+    var svgHeight = document.querySelector('svg').clientHeight;
+
+    return {width: svgWidth, height: svgHeight};
+  }).then(function(result){
+    var svgEl = {
+      width: 1024,
+      height: 1024
+    };
+
+    if (result.width && result.height) {
+      svgEl.width = result.width;
+      svgEl.height = result.height;
+    }
+
+    data.logger('Width x Height: ' + svgEl.width + 'x' + svgEl.height);
+
+    data.page.property('viewportSize', {
+      width: svgEl.width,
+      height: svgEl.height
+    });
+
+    data.page.property('clipRect', {
+      top: 0,
+      left: 0,
+      width: svgEl.width,
+      height: svgEl.height
+    });
+
+    data.page.property('viewportSize').then(function (result) {
+      data.logger('Current viewportSize size: ' + svgEl.width + 'x' + svgEl.height);
+      // data.logger(result);
+    });
+
+    // Output filename
+    var pngFilename = path.basename(data.file.filename, '.svg') + '.png';
+    var dest = path.join(data.file.destRoot, 'png', data.file.destSubdir, pngFilename);
+
+    // Render to file
+    data.page.render(dest).then(function(dest) {
+      data.logger('Generated PNG to file: ' + dest);
+      done(null, data);
+    });
   });
 
-  var svgEl = $('svg');
 
-  data.logger(onml.stringify(svgEl.get(0)));
-
-  var svg = {
-    width: svgEl.get(0).clientWidth,
-    height: svgEl.get(0).clientHeight
-  }
-
-  data.logger('Width x Height: ' + svg.width + 'x' + svg.height);
 
   // Update the page viewportSize and clipRect to match SVG dimensions
-  data.page.property('viewportSize', {
-    width: svg.width,
-    height: svg.height
-  });
-
-  data.page.property('clipRect', {
-    top: 0,
-    left: 0,
-    width: svg.width,
-    height: svg.height
-  });
-
-  // Output filename
-  var pngFilename = path.basename(data.file.filename, '.svg') + '.png';
-  var dest = path.join(data.file.destRoot, 'png', data.file.destSubdir, pngFilename);
+  // data.page.property('viewportSize', {
+  //   width: svgEl.width,
+  //   height: svgEl.height
+  // });
+  //
+  // data.page.property('clipRect', {
+  //   top: 0,
+  //   left: 0,
+  //   width: svgEl.width,
+  //   height: svgEl.height
+  // });
 
   // data.page.property('viewportSize').then(function (result) {
   //   data.logger('Current viewportSize size: ' + result.width + 'x' + result.height);
   //   data.logger(result);
   // });
-
-  // Render to file
-  data.page.render(dest).then(function(dest) {
-    data.logger('Generated PNG to file: ' + dest);
-    done(null, data);
-  });
 };
