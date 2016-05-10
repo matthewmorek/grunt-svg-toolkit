@@ -43,9 +43,5 @@
     <path class="iconic-nexus-button iconic-nexus-button-home iconic-property-fill" d="M4.5 12l-.5.5v.5h1v-.5z"/>
     <image class="iconic-nexus-screenshot-image" data-max-width="7" x="1" y="2" clip-path="url(#iconic-size-sm-nexus-clip-1)"/>
   </g>
-<script class="iconic-api" type="application/ecmascript">
-//<![CDATA[
-var iconicApis=window._Iconic?window._Iconic.smartIconApis:{};iconicApis["nexus"]=iconicApis["nexus"]||function(t){var e=function(e){t.setAttribute("data-screenshot",e);var i,r,n=t.querySelectorAll(".iconic-nexus-screenshot-image"),a=0,c=new Image;c.onload=function(){for(a=0;a<n.length;a++){n[a].setAttributeNS("http://www.w3.org/1999/xlink","xlink:href",e),n[a].setAttribute("display","inline");var t=c.width/c.height,o=parseInt(n[a].getAttribute("data-max-width"));r=o,i=o/t,n[a].setAttribute("height",i+"px"),n[a].setAttribute("width",r+"px")}};var o=/[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi,s=new RegExp(o);if(e&&e.match(s))c.src=e;else for(a=0;a<n.length;a++)n[a].setAttribute("display","none"),n[a].setAttributeNS("http://www.w3.org/1999/xlink","xlink:href","")},i=function(){var i=t.getAttribute("data-screenshot")||"";e(i)};return{update:i,setScreenshot:e}};
-//]]>
-</script>
+  <script class="iconic-api" type="application/ecmascript">//</script>
 </svg>
