@@ -48,8 +48,7 @@ module.exports = function (data, done) {
     var dest = path.join(data.file.destRoot, 'png', data.file.destSubdir, pngFilename);
 
     // data.page.get('viewportSize', function (result) {
-    //   data.logger('Current viewportSize size: ');
-    //   data.logger(result);
+    //   data.logger('Current viewportSize size: ' + result.width + ' x ' + result.height);
     // });
 
     // Render to file

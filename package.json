@@ -2,6 +2,7 @@
   "name": "grunt-svg-toolkit",
   "description": "> A toolkit for working with, styling and converting SVG files",
   "version": "0.1.2",
+  "license": "MIT",
   "homepage": "https://github.com/matthewmorek/grunt-svg-toolkit",
   "author": {
     "name": "Iconic",
@@ -39,20 +40,21 @@
     "test": "grunt"
   },
   "dependencies": {
-    "async": "~2.0.0-rc.4",
-    "chalk": "~1.1.3",
-    "cheerio": "~0.20.0",
-    "grunt-contrib-clean": "~1.0.0",
-    "phantom": "~2.1.1"
+    "async": "^1.5.2",
+    "chalk": "^1.1.1",
+    "cheerio": "^0.20.0",
+    "dompurify": "^0.8.2",
+    "grunt-contrib-clean": "^1.0.0",
+    "phantom": "^1.0.0"
   },
   "devDependencies": {
-    "grunt": "~1.0.1",
-    "grunt-contrib-clean": "~1.0.0",
-    "grunt-contrib-jshint": "~1.0.0",
-    "grunt-contrib-nodeunit": "~1.0.0"
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^0.4.1"
   },
   "peerDependencies": {
-    "grunt": "~1.0.1"
+    "grunt": "~0.4.5"
   },
   "files": [
     "tasks",
