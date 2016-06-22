@@ -45,6 +45,7 @@
     "cheerio": "^0.20.0",
     "dompurify": "^0.8.2",
     "grunt-contrib-clean": "^1.0.0",
+    "jsdom": "^9.2.1",
     "phantom": "^1.0.0"
   },
   "devDependencies": {
