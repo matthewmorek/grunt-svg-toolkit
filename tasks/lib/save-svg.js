@@ -11,7 +11,11 @@
 module.exports = function (data, done) {
   var path = require('path');
 
-  var dest = path.join(data.file.destRoot, 'svg', data.file.destSubdir, data.file.filename);
+  if (data.options.generatePNGs == true){
+    var dest = path.join(data.file.destRoot, 'svg', data.file.destSubdir, data.file.filename);
+  } else {
+    var dest = path.join(data.file.destRoot, data.file.destSubdir, data.file.filename);
+  }
 
   data.logger('Saving SVG file: ' + dest);
 
